@@ -28,6 +28,7 @@ import Iconify from "../components/iconify/iconify";
 import { visuallyHidden } from '@mui/utils';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Popup from '../components/Popup';
 
 function createData(name, calories, fat, carbs, protein) {
     return {
@@ -237,6 +238,7 @@ const Users = () => {
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [openPopup, setOpenPopup] = React.useState(false);
   
     const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === 'asc';
@@ -285,6 +287,10 @@ const Users = () => {
     const handleChangeDense = (event) => {
       setDense(event.target.checked);
     };
+
+    const openInPopup = () => {
+      setOpenPopup(true)
+  }
   
     const isSelected = (name) => selected.indexOf(name) !== -1;
   
@@ -313,8 +319,10 @@ const Users = () => {
                     <Button variant="contained" sx={{ bgcolor: (theme) => alpha(theme.palette.grey[900], 0.8) }}
                         startIcon={
                             <Iconify
-                        icon="eva:plus-fill"/>
-                    }>
+                        icon="eva:plus-fill"/> 
+                    }
+                      onClick={() => { setOpenPopup(true); }}
+                    >
                         New
                     </Button>
                 </Stack>
@@ -406,6 +414,13 @@ const Users = () => {
     </Box>
                 
             </Container>
+            <Popup
+              title="User Form"
+              openPopup={openPopup}
+              setOpenPopup={setOpenPopup}
+            >
+              fdkjfksaf
+            </Popup>
         </>
     );
 }
