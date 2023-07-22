@@ -9,7 +9,7 @@ const Popup = (props) => {
 
     return (
         <>
-            <Dialog open={openPopup} maxWidth="md" sx={{
+            <Dialog open={openPopup} onClose={() => {setOpenPopup(false)}} maxWidth="md" sx={{
                 padding: (theme) => theme.spacing(2),
                 position: 'absolute',
                 top: (theme) => theme.spacing(5)
@@ -20,24 +20,14 @@ const Popup = (props) => {
                             {title}
                         </Typography>
                         <ActionButton
-                            onClick={() => {setOpenPopup(console.log('false '));}}
+                            onClick={() => {setOpenPopup(false);}}
                         >
                             <CloseRoundedIcon />
                         </ActionButton>
                     </Box>
                 </DialogTitle>
                 <DialogContent dividers>
-                
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    id="name"
-                    label="Email Address"
-                    type="email"
-                    fullWidth
-                    variant="standard"
-                />
-                {children}
+                    {children}
                 </DialogContent>
             </Dialog>
         </>
